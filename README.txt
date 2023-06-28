@@ -16,6 +16,8 @@ python getter.py
 
 URL example: https://archiveofourown.org/works/99999
 
+Mirror websites like nightalk.cc also supportted!
+
 The downloaded acticle will be stored in the same directory as your_article_name.txt.
 
 If you encounter any problem (are there anyone going to use this expect myself?) please shoot a trouble.

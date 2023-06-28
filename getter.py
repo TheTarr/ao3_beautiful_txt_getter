@@ -52,9 +52,17 @@ def process_next_chapter(soup):
     if next_chapter_li:
         # Get the URL from the "href" attribute of the <a> tag
         next_chapter_url = next_chapter_li.find('a')['href']
-        
+
+        index = url.find("/works/")
+
+        if index != -1:
+            # Extract the string before the found index
+            extracted_string = url[:index]
+        else:
+            print("Substring not found in the URL.")
+
         # Send a request to the next chapter URL and create a new BeautifulSoup object
-        response = requests.get("https://archiveofourown.org" + next_chapter_url)
+        response = requests.get(extracted_string + next_chapter_url)
         new_soup = BeautifulSoup(response.content, 'html.parser')
         
         return new_soup
