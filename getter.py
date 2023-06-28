@@ -1,5 +1,23 @@
 import requests
 from bs4 import BeautifulSoup
+import warnings
+warnings.filterwarnings("ignore",category=DeprecationWarning)
+
+def process_pre_page(soup):
+    # Find the <a> tag with "Proceed" text
+    proceed_link = soup.find('a', text='Proceed')
+    
+    if proceed_link:
+        # Get the URL from the "href" attribute of the <a> tag
+        proceed_url = proceed_link['href']
+        
+        # Send a request to the proceed URL and create a new BeautifulSoup object
+        response = requests.get(proceed_url)
+        new_soup = BeautifulSoup(response.content, 'html.parser')
+        
+        return new_soup
+    
+    return None
 
 def analyzer(url):
     if "chapters" not in url:
@@ -21,7 +39,8 @@ def process_next_chapter(soup):
 
         # chapter - text
         for p in p_elements:
-            p_text = p.text.strip()
+            p_text = '\n　　'.join(p.stripped_strings)
+            # p_text = p.text.strip()
             if p_text:
                 file.write("　　" + p_text + '\n')
         
@@ -67,7 +86,8 @@ def write_file_single(soup):
         
         # Write each non-empty <p> element's text as a new line in the text file
         for p in p_elements:
-            p_text = p.text.strip()
+            # p_text = p.text.strip()
+            p_text = '\n　　'.join(p.stripped_strings)
             if p_text:
                 file.write("　　" + p_text + '\n')
 
@@ -109,6 +129,12 @@ response = requests.get(url)
     
 # Create a BeautifulSoup object to parse the HTML content
 soup = BeautifulSoup(response.content, 'html.parser')
+
+proceed_link = soup.find('a', text='Proceed')
+
+if proceed_link:
+    print("adult check found and processed.\n")
+    soup = process_pre_page(soup)
 
 if is_single == True:
     print("Single chapter article detected.\n")
