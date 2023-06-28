@@ -1,6 +1,6 @@
-# Ao3 beautiful txt getter
+##Ao3 beautiful txt getter
 
-This is a extremely lite program for downloading txt file for ao3 articles, supporting single chapter and multiple chapters article.
+This is an extremely lite program for downloading txt file for ao3 articles, supporting single chapter and multiple chapters article.
 
 How to use:
 
