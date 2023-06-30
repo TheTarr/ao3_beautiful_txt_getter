@@ -26,16 +26,34 @@ def analyzer(url):
         is_single = False
     return is_single
 
+def convert_title(input_string):
+    if ":" in input_string:
+        # Split the input string into chapter number and chapter title
+        split_string = input_string.split(": ")
+        chapter_number = split_string[0].split(" ")[1]
+        chapter_title = split_string[1]
+
+        # Construct the output string in the desired format
+        output_string = "第{}章：{}".format(chapter_number, chapter_title)
+
+        return output_string
+    else:
+        chapter_number = input_string.split(" ")[1]
+        output_string = "第{}章".format(chapter_number)
+        return output_string
+
 def process_next_chapter(soup):
     title = soup.find('h2', class_='title heading')
     # for each single chapter
-    chapter_title = soup.find('h3', class_='title')
+    chapter_title_raw = soup.find('h3', class_='title').text.strip()
+    chapter_title = convert_title(chapter_title_raw)
+
     p_elements = soup.select('div.userstuff p')
 
     # write each chapters
     with open(title.text.strip() + '.txt', 'a', encoding='utf-8') as file:
         # write each chapters - title
-        file.write(chapter_title.text.strip() + '\n')
+        file.write(chapter_title + '\n\n')
 
         # chapter - text
         for p in p_elements:
