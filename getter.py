@@ -91,6 +91,7 @@ def write_file_single(soup):
 
     title = soup.find('h2', class_='title heading')
     author = soup.find('a', rel='author')
+    
     try:
         summary = soup.find('blockquote', class_='userstuff')
         have_summary = True
@@ -116,6 +117,7 @@ def write_file_single(soup):
             p_text = '\n　　'.join(p.stripped_strings)
             if p_text:
                 file.write("　　" + p_text + '\n')
+        print("TXT download successfully. File stored at: " + str(title.text.strip() + '.txt'))
 
 def write_file_multiple(soup):
 
@@ -143,28 +145,34 @@ def write_file_multiple(soup):
         try:
             soup = process_next_chapter(soup)
         except:
+            print("TXT download successfully. File stored at: " + str(title.text.strip() + '.txt'))
             return
+    
 
 # Prompt the user to enter a URL
 url = input("Enter the URL: ")
 
 is_single = analyzer(url)
 
-# Send a GET request to the specified URL
-response = requests.get(url)
-    
-# Create a BeautifulSoup object to parse the HTML content
-soup = BeautifulSoup(response.content, 'html.parser')
+try:
+    # Send a GET request to the specified URL
+    response = requests.get(url)
+        
+    # Create a BeautifulSoup object to parse the HTML content
+    soup = BeautifulSoup(response.content, 'html.parser')
 
-proceed_link = soup.find('a', text='Proceed')
+    proceed_link = soup.find('a', text='Proceed')
 
-if proceed_link:
-    print("adult check found and processed.\n")
-    soup = process_pre_page(soup)
+    if proceed_link:
+        print("adult check found and processed.\n")
+        soup = process_pre_page(soup)
 
-if is_single == True:
-    print("Single chapter article detected.\n")
-    write_file_single(soup)
-else:
-    print("Mutiple chapters article detected. We will download all chapters.\n")
-    write_file_multiple(soup)
+    if is_single == True:
+        print("Single chapter article detected.\n")
+        write_file_single(soup)
+        
+    else:
+        print("Mutiple chapters article detected. We will download all chapters.\n")
+        write_file_multiple(soup)
+except:
+    print("Oops, something goes wrong. Please check your internet connection or URL. Example: https://archiveofourown.org/works/999")
