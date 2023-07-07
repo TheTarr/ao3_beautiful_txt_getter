@@ -14,7 +14,7 @@ Please start the project if you find it useful~ THX a lot~
 
 太长不看版：
 
-我是 windows -> 下载 ao3_beautiful_txt_getter.exe，双击运行。
+我是 windows -> 下载 ao3_beautiful_txt_getter_CN.exe，双击运行。
 
 下载好的 txt 会和 exe 放在一个目录。还有个 error.log 不用管。
 
