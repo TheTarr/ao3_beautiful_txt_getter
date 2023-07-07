@@ -6,7 +6,7 @@ quick start:
 
 I'm windows -> download ao3_beautiful_txt_getter.exe, double click to execute!
 
-The download txt file will be save in the same directory alone with your exe file.
+The downloaded txt file will be save in the same directory alone with your exe file.
 
 If you encountered any problem, please shoot an issue with whatever in your error.log file.
 
