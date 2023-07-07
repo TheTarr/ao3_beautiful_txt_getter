@@ -1,5 +1,25 @@
 Ao3 beautiful txt getter
 
+---------
+
+quick start:
+
+I'm windows -> download ao3_beautiful_txt_getter.exe, double click to execute!
+
+The download txt file will be save in the same directory alone with your exe file.
+
+If you encountered any problem, please shoot an issue with whatever in your error.log file.
+
+太长不看版：
+
+我是 windows -> 下载 ao3_beautiful_txt_getter.exe，双击运行。
+
+下载好的 txt 会和 exe 放在一个目录。
+
+遇到问题请发起 issue，把 error.log 这个文件的内容贴一下。
+
+---------
+
 This is an extremely lite program for downloading txt file from ao3, supporting single chapter and multiple chapters article.
 
 How to use:
