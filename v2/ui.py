@@ -101,8 +101,9 @@ def write_file_single(soup):
     else:
         have_author = False
 
+    file_name = title.text.strip()
     for char in illegal_chars:
-        file_name = title.text.strip().replace(char, '_')
+        file_name = file_name.replace(char, '_')
 
     summary = soup.find('blockquote', class_='userstuff')
     if summary:
@@ -142,8 +143,9 @@ def write_file_multiple(soup, url):
     else:
         have_author = False
 
+    file_name = title.text.strip()
     for char in illegal_chars:
-        file_name = title.text.strip().replace(char, '_')
+        file_name = file_name.replace(char, '_')
 
     summary = soup.find('blockquote', class_='userstuff')
     if summary:

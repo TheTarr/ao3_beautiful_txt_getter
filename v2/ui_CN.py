@@ -101,8 +101,9 @@ def write_file_single(soup):
     else:
         have_author = False
 
+    file_name = title.text.strip()
     for char in illegal_chars:
-        file_name = title.text.strip().replace(char, '_')
+        file_name = file_name.replace(char, '_')
 
     summary = soup.find('blockquote', class_='userstuff')
     if summary:
@@ -141,9 +142,10 @@ def write_file_multiple(soup, url):
         have_author = True
     else:
         have_author = False
-
+    
+    file_name = title.text.strip()
     for char in illegal_chars:
-        file_name = title.text.strip().replace(char, '_')
+        file_name = file_name.replace(char, '_')
 
     summary = soup.find('blockquote', class_='userstuff')
     if summary:
@@ -188,6 +190,7 @@ def main(url):
             write_file_multiple(soup, url)
 
     except Exception as e:
+        print('遇到bug，请查看error.txt并联系作者！')
         logging.error("An error occurred: %s", str(e))
         logging.error(str(url))
 
