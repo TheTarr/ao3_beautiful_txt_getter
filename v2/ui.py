@@ -61,8 +61,7 @@ def process_next_chapter(file_name, soup, url):
         # chapter text
         for p in p_elements:
             p_text = p.get_text(separator='', strip=True)
-            if p_text:
-                file.write("　　" + p_text + '\n')
+            file.write("　　" + p_text + '\n')
         
         file.write('\n')
 
@@ -128,8 +127,7 @@ def write_file_single(soup):
         for p in p_elements:
             if hasattr(p, 'text'):
                 p_text = p.get_text(separator='', strip=True)
-                if p_text:
-                    file.write("　　" + p_text + '\n')
+                file.write("　　" + p_text + '\n')
         print("TXT download successfully. File stored at: " + file_name + '.txt')
 
 def write_file_multiple(soup, url):
@@ -190,7 +188,9 @@ def main(url):
             write_file_multiple(soup, url)
 
     except Exception as e:
+        print('error occurred, please copy error.txt and inform thetarr!')
         logging.error("An error occurred: %s", str(e))
+        logging.error(str(url))
 
 # Tkinter UI code
 def download_txt():

@@ -61,8 +61,7 @@ def process_next_chapter(file_name, soup, url):
         # chapter text
         for p in p_elements:
             p_text = p.get_text(separator='', strip=True)
-            if p_text:
-                file.write("　　" + p_text + '\n')
+            file.write("　　" + p_text + '\n')
         
         file.write('\n')
 
@@ -128,8 +127,7 @@ def write_file_single(soup):
         for p in p_elements:
             if hasattr(p, 'text'):
                 p_text = p.get_text(separator='', strip=True)
-                if p_text:
-                    file.write("　　" + p_text + '\n')
+                file.write("　　" + p_text + '\n')
         print("TXT 文件下载完成。储存为：" + file_name + '.txt')
 
 def write_file_multiple(soup, url):
